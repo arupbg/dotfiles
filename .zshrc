@@ -181,7 +181,7 @@ export ANDROID_HOME="/Users/arup//Library/Android/sdk"
 export ANDROID_SDK_ROOT="/Users/arup/Library/Android/sdk"
 export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator
 export PROMPT="$PROMPT
-⛳💧☘️  "
+✏️  "
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export MONO_GAC_PREFIX='/usr/local'
