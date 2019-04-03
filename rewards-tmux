@@ -1,0 +1,39 @@
+#!/bin/bash
+
+function rewards-dev-tmux
+{
+    # https://github.com/swaroopch/flask-boilerplate
+    BASE="$HOME/projects/bg"
+    cd $BASE
+
+    tmux start-server
+    tmux new-session -d -s rewards -n rewards
+    tmux new-window -t rewards:2 -n oam
+    tmux new-window -t rewards:3 -n commons
+    tmux new-window -t rewards:4 -n console
+    tmux new-window -t rewards:5 -n tests
+    tmux new-window -t rewards:6 -n git
+
+    tmux send-keys -t rewards:1 "vim rewards/addon/hub/offers/offers-list/style.less" C-m
+    tmux split-window -h -p 50 -t rewards:1 "cd oam; ember serve"
+    tmux split-window -v -p 50 -t rewards:1 "vim rewards/addon/styles/_variables.less"
+    tmux split-window -v -p 50 -t rewards:1 "vim rewards/addon/components/reward-summary/style.less"
+    tmux select-pane -t rewards:1.left
+    tmux split-window -v -p 50 -t rewards:1 "vim rewards/addon/hub/offers/offers-list/template.hbs"
+    tmux send-keys -t rewards:2 "cd $BASE" C-m
+    tmux send-keys -t rewards:3 "cd $BASE" C-m
+    tmux send-keys -t rewards:4 "mutt" C-m
+    tmux send-keys -t rewards:5 "calcurse" C-m
+    tmux send-keys -t rewards:6 "cd rewards; git status" C-m
+
+    tmux rename-window -t rewards:2  oam
+    tmux rename-window -t rewards:3  commons
+    tmux rename-window -t rewards:4  console
+    tmux rename-window -t rewards:5  tests
+    tmux rename-window -t rewards:6  git
+
+    tmux select-window -t rewards:1
+    tmux attach-session -t rewards
+}
+
+rewards-dev-tmux

@@ -51,10 +51,17 @@ Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-fugitive'
 
 " Add NERDTree Tabs plugin here "
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 
+" NerdTree 
+Plugin 'scrooloose/nerdtree'
+
+" Add NERDTree Tabs plugin here "
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" NerdTree git plugin
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Autocomplete
 Plugin 'Valloric/YouCompleteMe'
@@ -194,7 +201,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
 Plugin 'ap/vim-css-color'
 Plugin 'Yggdroot/indentLine'
-
 " Always show statusline
  set laststatus=2
 "autocmd vimenter * NERDTree
@@ -251,6 +257,7 @@ set mouse+=a
 if &term =~ '^screen'
       " tmux knows the extended mouse mode
       "set ttymouse=xterm2
+      set ttymouse=xterm2
 endif
 
 " Toggle NerdTree
