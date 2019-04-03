@@ -1,0 +1,61 @@
+[general]
+accounts = work, Gmail
+ui = ttyui
+fsync = False
+socktimeout = 60
+pythonfile=~/dotfiles/.mutt/scripts/keychain_access.py
+
+autorefresh = 5
+
+[Account work]
+localrepository = work-local
+remoterepository = work-remote
+postsynchook = notmuch new
+
+[Repository work-local]
+type = Maildir
+localfolders = ~/Mail/work
+# Besides, we only need `All Mail` folder.
+# Sup would manage mails on its own.
+# If your GMail language setting is not English, you can execute
+# `offlineimap --info` to find out the name of folder which is
+# translated and encoded after your account is configured.
+nametrans = lambda folder: {'inbox': 'INBOX',
+                            }.get(folder, folder)
+
+[Repository work-remote]
+maxconnections = 4
+type = IMAP
+ssl = no
+#sslcacertfile = ~/.mutt/certificates/alanaamy.pem
+remotehost = mail.alanaamy.net
+remoteuser = arup@alanaamy.net
+remotepasseval = get_keychain_pass(account="arup@alanaamy.net", server="alanaamy.net")
+remoteport = 143
+nametrans = lambda folder: {'INBOX': 'inbox',
+                            'Disputes': 'disputes',
+                            'Holidays': 'holidays',
+                            'Sent': 'Sent',
+                            'Property': 'Property'
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder in ['INBOX', 'disputes', 'holidays']
+# Or, if you have a lot of mail and don't want to wait for a long time before
+# using sup, you can archive all your old mails on Gmail and only sync the
+# inbox with the following line replacing the previous `folderfilter` line:
+# folderfilter = lambda folder: folder == 'INBOX'
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/Mail/Gmail
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = arupalan@gmail.com
+remotepass = acacyowoufccbveq
+realdelete = no
+maxconnections = 3
+sslcacertfile = /usr/local/etc/openssl/cert.pem

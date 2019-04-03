@@ -1,0 +1,15 @@
+# vim: ft=muttrc
+set from          = "arup@alanaamy.net"
+set sendmail      = "/usr/bin/msmtp -a work"
+set mbox          = "+work/archive"
+set postponed     = "+work/drafts"
+set query_command = "docker run --rm --volumes-from gc-config \
+ arup/alanaamy-contacts mutt-query arup@alanaamy.net '%s'"
+
+macro index ,c "<change-folder>+Gmail/INBOX<enter>" "change accounts"
+macro index ,z "<shell-escape>mbsync --pull-new Gmail-inbox<enter>" "sync IMAP"
+macro index D "<save-message>+gmail/trash<enter>" "move message to the trash"
+macro index S "<save-message>+gmail/spam<enter>"  "mark message as spam"
+
+macro index ,D \
+  "<tag-pattern>all<enter><tag-prefix><save-message>+Gmail/trash<enter>" \

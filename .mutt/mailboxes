@@ -1,0 +1,12 @@
+# Mailboxes to show in the sidebar.
+mailboxes \
+          +work/INBOX \
+          +work/Disputes \
+          +work/Holidays \
+          +work/Sent \
+          +work/Property \
+          +work/cron \
+          +work/archive \
+          +work/drafts \
+          +Gmail/INBOX \
+          +Gmail/Drafts

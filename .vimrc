@@ -1,401 +1,382 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Using Vim-Plug for plugin manager
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set autoindent
+set smartindent
 
-" Next generation completion framework after neocomplcache
-Plug 'Shougo/deoplete.nvim'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" A tree explorer plugin for vim.
-Plug 'scrooloose/nerdtree'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-" Vim plugin for intensely orgasmic commenting
-Plug 'scrooloose/nerdcommenter'
+"Plugin for vim-tmux integration
+Plugin 'christoomey/vim-tmux-navigator'
 
-" Vim motions on speed!
-Plug 'easymotion/vim-easymotion'
+"Plugin for colorscheme
+Plugin 'flazz/vim-colorschemes'
 
-" Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
-Plug 'Raimondi/delimitMate'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
 
-" A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
-Plug 'airblade/vim-gitgutter'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'benmills/vimux'
 
-" Command-line fuzzy finder
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" Ack vim
+Plugin 'mileszs/ack.vim'
 
-" fugitive.vim: a Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
+" Ag vim
+Plugin 'rking/ag.vim'
 
-" lean & mean status/tabline for vim that's light as air
-Plug 'vim-airline/vim-airline'
+"handlebars ember
+Plugin 'joukevandermaas/vim-ember-hbs'
 
-" A collection of themes for vim-airline
-Plug 'vim-airline/vim-airline-themes'
+"Json formatter
+Plugin 'elzr/vim-json'
 
-" 🔗  The fancy start screen for Vim.
-Plug 'mhinz/vim-startify'
+" Git wrapper
+Plugin 'tpope/vim-fugitive'
 
-" Vim plugin that displays tags in a window, ordered by scope
-" NOTE: Requires ctags to be installed to do so, run the following from ~/
-" 1. run `brew install ctags`
-" 2. run `which ctags` if the result is /usr/bin/ctags it means you are not
-" 	 using the brew version
-" 3. run `PATH=/usr/local/bin:$PATH`
-" 4. run `which ctags` if the result is /usr/local/bin/ctags you are using
-" 	 brew's version
-Plug 'majutsushi/tagbar'
-
-" Asynchronous Lint Engine
-Plug 'w0rp/ale'
-
-" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
-Plug 'ryanoasis/vim-devicons'
-
-" Extra syntax and highlight for nerdtree files
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-" Quantify your coding inside Vim.
-Plug 'wakatime/vim-wakatime'
-
-" Vastly improved Javascript indentation and syntax support in Vim. https://www.vim.org/scripts/script.php?script_id=4452
-Plug 'pangloss/vim-javascript'
-
-" JSX syntax highlighting
-Plug 'mxw/vim-jsx'
-
-" True Sublime Text style multiple selections for Vim
-" Plug 'terryma/vim-multiple-cursors'
-
-call plug#end()
+" Add NERDTree Tabs plugin here "
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
+" Autocomplete
+Plugin 'Valloric/YouCompleteMe'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GLOBAL SETTINGS FOR VIM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Solarized
+Plugin 'altercation/vim-colors-solarized'
 
-" Make the Leader key , instead of the default \
-let mapleader=","
+" postcss
+Plugin 'stephenway/postcss.vim'
 
-syntax enable
+" syntastic
+Plugin 'vim-syntastic/syntastic'
+
+" gitgutter
+Plugin 'airblade/vim-gitgutter'
+
+" have nodejs and yarn
+Plugin 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+"Markdown Syntax highlight
+Plugin 'gabrielelana/vim-markdown'
+
+" JSX
+Plugin 'pangloss/vim-javascript'
+" bug in below vim-jsx
+" https://stackoverflow.com/questions/3223695/javascript-indentation-in-vim 
+" Plugin 'mxw/vim-jsx'
+Plugin 'othree/yajs.vim'
+Plugin 'maxmellon/vim-jsx-pretty'
+
+" https://github.com/FredKSchott/CoVim
+" Plugin 'FredKSchott/CoVim'
+" https://github.com/typeintandem/nvim
+"Plugin 'typeintandem/nvim'
+Plugin 'floobits/floobits-neovim'
+
+" -------------------------------------------- REACT
+" https://jaxbot.me/articles/setting-up-vim-for-react-js-jsx-02-03-2015
+" lint - https://drivy.engineering/setting-up-vim-for-react/
+" install locally
+" yarn add eslint babel-eslint eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import stylelint eslint-config-airbnb eslint-plugin-jsx-a11y
+" install globaly: npm i -g eslint babel-eslint eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-import stylelint eslint-config-airbnb eslint-plugin-jsx-a11y
+"//--------------------------------------------
+Plugin 'w0rp/ale'
+Plugin 'prettier/prettier'
+Plugin 'skywind3000/asyncrun.vim'
+
+" node
+Plugin 'moll/vim-node'
+" typescript
+Plugin 'leafgarland/typescript-vim'
+
+"File fonts
+Plugin 'ryanoasis/vim-webdevicons'
+
+"Image Preview
+Plugin 'ashisha/image.vim'
+
+"svg 
+Plugin 'svg.vim'
+Plugin 'jasonshell/vim-svg-indent'
+
+"https://github.com/prettier/vim-prettier
+Plugin 'prettier/vim-prettier'
+
+Plugin 'OmniSharp/omnisharp-vim'
+let g:OmniSharp_server_use_mono = 1
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'cyansprite/deoplete-omnisharp' , {'do': './install.sh'}
+"Settings
+""OmniSharp
+filetype plugin on
+let g:OmniSharp_timeout = 5
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+set completeopt=longest,menuone
+let g:OmniSharp_want_snippet=1
+let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_server_path ='/Users/arup/.omnisharp/omnisharp-roslyn/OmniSharp.exe'
+let g:deoplete_omnisharp_exe_path   = get(g:, "deoplete_omnisharp_exe_path", '/Users/arup/.omnisharp/omnisharp-roslyn/OmniSharp.exe')
+let g:deoplete_omnisharp_port   = get(g:, "deoplete_omnisharp_port", 9999)
+
+Plugin 'tpope/vim-dispatch'
+Plugin 'Shougo/vimproc.vim'
+
+"https://github.com/neovim/nvim.net
+Plugin 'neovim/nvim.net'
+
+"code folding
+Plugin 'tmhedberg/simpylfold'
+let g:SimpylFold_docstring_preview = 1
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+execute pathogen#infect()
 syntax on
-set t_Co=256
+filetype plugin indent on
+syntax enable
+set background=light
+colorscheme solarized
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+let g:indentguides_ignorelist = ['text']
+let g:indentguides_spacechar = '┆'
+let g:indentguides_tabchar = '|'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 1
+set tabstop=2
+set shiftwidth=2
+set expandtab
+let g:indentLine_char = '┆'
+let g:indentLine_enabled = 1
+set mouse=a
+let g:NERDTreeMouseMode=3
 
-set background=dark " for the dark version
-colorscheme neodark
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdcommenter'
+" zen coding vim https://github.com/mattn/emmet-vim
+Plugin 'mattn/emmet-vim'
+Plugin 'ap/vim-css-color'
+Plugin 'Yggdroot/indentLine'
 
+" Always show statusline
+ set laststatus=2
+"autocmd vimenter * NERDTree
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ENVIRONMENT VARIABLES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://medium.com/@victormours/a-better-nerdtree-setup-3d3921abc0b9
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
-" Highlight the current cursor line
-set cursorline
+let mapleader = ","
+noremap <leader>w :w<cr>
 
-" Wrap text on the screen appropriately (don't wrap in the middle of the word)
-set linebreak
+"vim tmux maps
+" Prompt for a command to run
+noremap <leader>tp :VimuxPromptCommand<cr>
 
-" Shows line numbers by default when opening files
+" Run last command executed by VimuxRunCommand
+noremap <leader>tl :VimuxRunLastCommand<cr>
+
+" Zoom the tmux runner pane
+noremap <leader>tz :VimuxZoomRunner<cr>
+
+" Inspect tmux runner pane
+noremap <leader>ti :VimuxInspectRunner<cr>
+
+" execute ember test
+nmap <leader>z :call VimuxRunCommand("ember test")<cr>
+
+"Ack grep
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+"
+"grep inside vim
+
+" opens search results in a window w/ links and highlight the matches
+command! -nargs=+ Grep execute 'silent grep! -I -r -n --exclude *.{json,pyc,css,scss} . -e <args>' | copen | execute 'silent /<args>'
+" shift-control-* Greps for the word under the cursor
+:nmap <leader>g :Grep <c-r>=expand("<cword>")<cr><cr>
+
+"ack vim
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Some settings to enable the theme:
 set number
+syntax enable
+set background=dark
+let g:solarized_termcolors = 256  " New line!!
+"colorscheme solarized
+colorscheme PaperColor
 
-" Shows relative line numbers
-set relativenumber
-
-" Set the tab stop to 4
-set tabstop=4
-"
-" Helps with autoindenting when using =
-set shiftwidth=4
-
-" Allow the backspace button to work as normal
-set backspace=indent,eol,start
-
-" Have line wrapping off by default
-set nowrap
-
-" Displays the special characters like eol, indents etc
-" DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-set listchars=tab:\|\ ,
-set listchars=tab:•\ ,
-" set listchars=tab:•\ ,eol:¬
-set list
-
-" Hide the default mode indicator. Do so because airline will show the current mode
-set noshowmode
-
-" Display vim airline at the botom of the window
-set laststatus=2
-
-" If search string contains only lowercase letters search is case insensitive.
-" If search string contains capital letters search is case sensative
-set ignorecase
-set smartcase
-
-set encoding=utf8
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key Bindings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Toggle paste mode
-nnoremap <Leader>a :set paste!<CR>
-
-" Toggle wrap mode
-nnoremap <Leader>wr :set wrap!<CR>
-
-" Toggle highlighting of search results
-nnoremap <Leader>hl :set hlsearch!<CR>
-
-" Toggle cursor line highlight
-nnoremap <Leader>cll :set cursorline!<CR>
-
-" Unbinds the arrow keys and makes them stop working
-noremap <UP> <NOP>
-noremap <DOWN> <NOP>
-noremap <LEFT> <NOP>
-noremap <RIGHT> <NOP>
-
-" SETTINGS FOR THE BUFFER
-" Create a new buffer
-nnoremap <Leader>b :enew<cr>
-
-" Move to the next buffer
-nnoremap <Leader>n :bn<CR>
-
-" Move to the previous buffer
-nnoremap <Leader>p :bp<CR>
-
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nnoremap <Leader>q :bp <BAR> bd #<CR>
-
-" Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
-" nnoremap <Leader>bl :ls<CR>
-
-" Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different locations at the same time)
-nnoremap <Leader>sp :vsplit<CR>
-nnoremap <Leader>hsp :split<CR>
-
-" Vertically and horizontally resize a window
-nnoremap <Leader>vrs :vertical resize
-nnoremap <Leader>hrs :resize
-
-
-" Use tt to togle the tagbar open and close
-nnoremap tt :TagbarToggle<CR>
-
-" Use fzf to open files --> Alternative to Ctrl-P
-" Toggles NERDTree and then opens fzf window to find file so new file isn't
-" opened in the NERDTree space --> ONLY WORKS THIS WAY IF NERDTree is already
-" open and file is opened in a new buffer
-" nnoremap nff :NERDTreeToggle<CR> :Files<CR>
-
-" Opens fzf window without toggling NERDTree
-nnoremap ff :Files<CR>
-nnoremap <c-f> :Ag<CR>
-
-" Delete trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SETTINGS TO MODIFY SPECIFIC  PACKAGES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" #########################
-" ###### Deocomplete
-" ########################
-
-let g:deoplete#enable_at_startup = 1
-
-" Use tab to auto cycle through autocmoplete list instead of arrows
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-
-
-" #########################
-" ###### NERDTree
-" ###### VimFiler
-" ########################
-
-" Toggle NERDTree
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <Leader>nt :NERDTree<CR>
-
-
-" Choose the arrow character NERDTree will use
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▿'
-" ▾
-" Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
-" autocmd VimEnter * NERDTree
-
-" let NERDTreeShowHidden=1
-
-
-
-" #########################
-" ###### NerdCommenter
-" ########################
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-
-
-" #########################
-" ###### EasyMotion
-" ########################
-
-" Run easymotion commands in a direction --> based off of hjkl
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
-
-
-
-" #########################
-" ###### Airline
-" ########################
-
-" Using the font Meslo LG S Regular for Powerline which can be found here:
-" https://github.com/powerline/fonts/tree/master/Meslo
-" Currently using DejaVu Sans Mono for Powerline
-" It is also installed on my computer
-"
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+"setting NERDTree mouse to work within tmux
+"https://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
+set mouse+=a
+if &term =~ '^screen'
+      " tmux knows the extended mouse mode
+      "set ttymouse=xterm2
 endif
 
-let g:airline_theme='angr'
-let g:airline_symbols.branch = ""
-let g:airline_symbols.paste = "Þ"
-" let g:airline_left_sep = "\uE0B4"
-" let g:airline_right_sep = "\uE0B6"
-let g:airline_left_sep=""
-let g:airline_right_sep=""
+" Toggle NerdTree
+nmap <F6> :NERDTreeToggle<CR>
 
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" set diffopt+=vertical for vertical tabs in fugitive Gdiff
+set diffopt+=vertical
 
-" Hide whitespace errors
-let g:airline#extensions#whitespace#enabled = 0
+" set guifont
+if has('gui_running')
+  set guifont=MesloLGMDZForPowerline-Regular:h11
+endif
+set clipboard=unnamed
 
-" Display only the filename in section c
-let g:airline_section_c = airline#section#create(['%t'])
+" Open file via NERDTree Tabs, hot key: \t "
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
-" Display the file type in section x
-let g:airline_section_x = airline#section#create('%y')
+" Start NERDTree Tabs automatically "
+" let g:nerdtree_tabs_open_on_console_startup = 1
+set encoding=utf-8
 
-" Display only the file encoding in section y
-let g:airline_section_y = airline#section#create("%{strlen(&fenc)?&fenc:'none'}")
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" Display only the line and column information in section z
-let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col:%03c'])
-
-let g:airline_section_error = airline#section#create('')
-let g:airline_section_warning = airline#section#create ('')
-
-" Display syntax errors from Ale in the status line
-let g:airline#extensions#ale#enabled = 1
-
-" EXAMPLES FROM :help airline
-" let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
-" let g:airline_section_b       (hunks, branch)
-" let g:airline_section_c       (bufferline or filename)
-" let g:airline_section_gutter  (readonly, csv)
-" let g:airline_section_x       (tagbar, filetype, virtualenv)
-" let g:airline_section_y       (fileencoding, fileformat)
-" let g:airline_section_z       (percentage, line number, column number)
-" let g:airline_section_error   (ycm_error_count, syntastic, eclim)
-" let g:airline_section_warning (ycm_warning_count, whitespace)
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
+"Markdown Preview Setup
+" set to 1, the nvim will open the preview window once enter the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 0
 
-" #########################
-" ###### Startify
-" ########################
+" set to 1, the nvim will auto close current preview window when change
+" from markdown buffer to another buffer
+" default: 1
+let g:mkdp_auto_close = 1
 
-let g:startify_update_oldfiles = 1
+" set to 1, the vim will just refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+" default: 0
+let g:mkdp_refresh_slow = 0
 
-autocmd VimEnter *
-\   if !argc()
-\ |   Startify
-\ |   NERDTree
-\ |   wincmd w
-\ | endif
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it just can be use in markdown file
+" default: 0
+let g:mkdp_command_for_global = 0
 
-let g:startify_custom_header = [
-\ '                                                                            ',
-\ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
-\ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
-\ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
-\ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
-\ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
-\ '                                                                            ',
-\ '                       o---o   o-----o  o-----o  o   o                      ',
-\ '                       |   |   |     |  |        |  /                       ',
-\ '                       o---o   |-----|  |        |--                        ',
-\ '                       |    \  |     |  |        |  \                       ',
-\ '                       o----o  o     o  o-----o  o   o                      ',
-\ ]
+" set to 1, preview server available to others in your network
+" by default, the server only listens on localhost (127.0.0.1)
+" default: 0
+let g:mkdp_open_to_the_world = 0
 
+" use custom IP to open preview page
+" useful when you work in remote vim and preview on local browser
+" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
+" default empty
+let g:mkdp_open_ip = ''
 
+" specify browser to open preview page
+" default: ''
+let g:mkdp_browser = ''
 
-" #########################
-" ###### Tagbar
-" ########################
-" Set the width to be x columns
-let g:tagbar_width = 30
+" set to 1, echo preview page url in command line when open preview page
+" default is 0
+let g:mkdp_echo_preview_url = 0
 
-" Display tagbar info compactly
-let g:tagbar_compact = 1
+" a custom vim function name to open preview page
+" this function will receive url as param
+" default is empty
+let g:mkdp_browserfunc = ''
 
-" Open the tagbar when vim starts if the file being opened is supported
-" autocmd VimEnter * nested :call tagbar#autoopen(1)
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle'
+    \ }
 
-" To view a list of colors available run :highlight
-highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
+" use a custom markdown style must be absolute path
+let g:mkdp_markdown_css = ''
 
-" Sort by order of appearence in the file, not by alphabetical
-let g:tagbar_sort = 0
+" use a custom highlight style must absolute path
+let g:mkdp_highlight_css = ''
 
+" use a custom port to start server or random for empty
+let g:mkdp_port = ''
 
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"  execfile(activate_this, dict(__file__=activate_this))
+"EOF
+"
+"-- FOLDING --
+:set foldmethod=syntax "syntax highlighting items specify folds
+:set foldcolumn=1 "defines 1 col at window left, to indicate folding
+let javaScript_fold=1 "activate folding by JS syntax
+:set foldlevelstart=99 "start file with all folds opened
 
-" #########################
-" ###### Ale
-" ########################
+" toggle relative line numbers
+:set relativenumber!
+:set rnu!
 
-" Use the quickfix list
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-" Open the list
-let g:ale_open_list = 1
-
-" Wait n ms before linting after text is changed
-let g:ale_lint_delay = 700
-
-nnoremap <Leader>tl :ALEToggle<CR>
-
-let g:ale_linters = {
-\	'javascript': ['eslint'],
-\	'SCSS': ['styleint'],
-\}
-
-" #########################
-" ###### Vim Devicons
-" ########################
-
-" the amount of space to use after the glyph character (default ' ')
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+" turn relative line numbers on
+:set relativenumber
+:set rnu
+autocmd filetype crontab setlocal nobackup nowritebackup

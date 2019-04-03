@@ -1,0 +1,324 @@
+# Paths ----------------------------------------------
+set folder           = ~/Mail               # mailbox location
+set alias_file       = ~/dotfiles/.mutt/alias         # where to store aliases
+set header_cache     = ~/dotfiles/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/dotfiles/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/dotfiles/.mutt/certificates/alanaamy.pem  # where to store certs
+set mailcap_path     = ~/dotfiles/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/dotfiles/.mutt/temp          # where to keep temp files
+set signature        = ~/dotfiles/.mutt/signature           # my signature file
+set trash            = '+Trash'              # Folder in which to put deleted emails
+set trash            = ~/Mail/trash 
+# The default delete key 'd' will move an email to the 'trash' folder
+# Bind 'D' to REALLY delete an email
+bind index D purge-message
+# Note: Deleting emails from the 'trash' folder will REALLY delete them.
+
+# Basic Options --------------------------------------
+set wait_key = no        # shut up, mutt
+set mbox_type = Maildir  # mailbox type
+set timeout = 3          # idle time before scanning
+set mail_check = 0       # minimum time between scans
+unset move               # gmail does that
+set delete               # don't ask, just do
+unset confirmappend      # don't ask, just do!
+set quit                 # don't ask, just do!!
+unset mark_old           # read/new is good enough for me
+set beep_new             # bell on new mails
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+set sleep_time = 0
+
+#sidebar 
+# --------------------------------------------------------------------------
+# VARIABLES – shown with their default values
+# --------------------------------------------------------------------------
+# Should the Sidebar be shown?
+# set sidebar_visible = no
+# How wide should the Sidebar be in screen columns?
+
+# Note: Some characters, e.g. Chinese, take up two columns each.
+# set sidebar_width = 20
+# Should the mailbox paths be abbreviated?
+set sidebar_short_path = no
+# Number of top-level mailbox path subdirectories to truncate for display
+set sidebar_component_depth = 0
+# When abbreviating mailbox path names, use any of these characters as path
+# separators. Only the part after the last separators will be shown.
+# For file folders '/' is good. For IMAP folders, often '.' is useful.
+set sidebar_delim_chars = '/.'
+# If the mailbox path is abbreviated, should it be indented?
+set sidebar_folder_indent = yes
+# Indent mailbox paths with this string.
+set sidebar_indent_string = '  '
+# Make the Sidebar only display mailboxes that contain new, or flagged,
+# mail.
+set sidebar_new_mail_only = no
+# Any mailboxes that are whitelisted will always be visible, even if the
+# sidebar_new_mail_only option is enabled.
+# sidebar_whitelist '/home/user/mailbox1'
+# sidebar_whitelist '/home/user/mailbox2'
+# When searching for mailboxes containing new mail, should the search wrap
+# around when it reaches the end of the list?
+set sidebar_next_new_wrap = no
+# Show the Sidebar on the right-hand side of the screen
+set sidebar_on_right = no
+# The character to use as the divider between the Sidebar and the other NeoMutt
+# panels.
+set sidebar_divider_char = '|'
+# Enable extended mailbox mode to calculate total, new, and flagged
+# message counts for each mailbox.
+set mail_check_stats
+# Display the Sidebar mailboxes using this format string.
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+# Sort the mailboxes in the Sidebar using this method:
+#       count    – total number of messages
+#       flagged  – number of flagged messages
+#       new      – number of new messages
+#       path     – mailbox path
+#       unsorted – do not sort the mailboxes
+set sidebar_sort_method = 'unsorted'
+# --------------------------------------------------------------------------
+# FUNCTIONS – shown with an example mapping
+# --------------------------------------------------------------------------
+# Move the highlight to the previous mailbox
+bind index,pager \Cp sidebar-prev
+# Move the highlight to the next mailbox
+bind index,pager \Cn sidebar-next
+# Open the highlighted mailbox
+bind index,pager \Co sidebar-open
+# Move the highlight to the previous page
+# This is useful if you have a LOT of mailboxes.
+bind index,pager <F3> sidebar-page-up
+# Move the highlight to the next page
+# This is useful if you have a LOT of mailboxes.
+bind index,pager <F4> sidebar-page-down
+# Move the highlight to the previous mailbox containing new, or flagged,
+# mail.
+bind index,pager <F5> sidebar-prev-new
+# Move the highlight to the next mailbox containing new, or flagged, mail.
+bind index,pager <F6> sidebar-next-new
+# Toggle the visibility of the Sidebar.
+bind index,pager B sidebar-toggle-visible
+# --------------------------------------------------------------------------
+# COLORS – some unpleasant examples are given
+# --------------------------------------------------------------------------
+# Note: All color operations are of the form:
+#       color OBJECT FOREGROUND BACKGROUND
+# Color of the current, open, mailbox
+# Note: This is a general NeoMutt option which colors all selected items.
+color indicator cyan black
+# Color of the highlighted, but not open, mailbox.
+color sidebar_highlight black color8
+# Color of the divider separating the Sidebar from NeoMutt panels
+color sidebar_divider color8 black
+# Color to give mailboxes containing flagged mail
+color sidebar_flagged red black
+# Color to give mailboxes containing new mail
+color sidebar_new green black
+# Color to give mailboxes containing no new/flagged mail, etc.
+color sidebar_ordinary color245 default
+# --------------------------------------------------------------------------
+
+# vim: syntax=neomuttrc<Paste>
+
+
+# Sidebar Patch --------------------------------------
+# set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 30
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+# Bind sidebar navigation to CTRL-n, CTRL-p, and CTRL-o
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
+bind pager \CP sidebar-prev
+bind pager \CN sidebar-next
+bind pager \CO sidebar-open
+
+# Status Bar -----------------------------------------
+set status_chars  = "-*%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+# Index View Options ---------------------------------
+set date_format = "%m/%d"
+# set index_format = "[%Z]  %D  %-20.20F  %s"
+set index_format = "%4C [%Z] %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Example NeoMutt config file for the index-color feature.
+
+# Entire index line
+color index white black '.*'
+# Author name, %A %a %F %L %n
+# Give the author column a dark grey background
+color index_author default color234 '.*'
+# Highlight a particular from (~f)
+color index_author brightyellow color234 '~fMedium'
+# Message flags, %S %Z
+# Highlight the flags for flagged (~F) emails
+color index_flags default red '~F'
+# Subject, %s
+# Look for a particular subject (~s)
+color index_subject brightcyan default '~s/(closes#[0-9]+)/g'
+# Number of messages in a collapsed thread, %M
+color index_collapsed default brightblue
+# Date field
+color index_date green default
+# Message label, %y %Y
+color index_label default brightgreen
+# Message number, %C
+color index_number red default
+# Message size, %c %l
+color index_size cyan default
+
+# vim: syntax=neomuttrc
+#
+
+# Index Key Bindings ---------------------------------
+bind index g        noop
+bind index gg       first-entry
+bind index G        last-entry
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Example NeoMutt config file for the attach-headers-color feature.
+
+# Color if the attachment is autoviewed
+color   attach_headers     brightgreen     default    "Autoview"
+# Color only the brackets around the headers
+color   attach_headers     brightyellow    default    "^\\[--"
+color   attach_headers     brightyellow    default    "--]$"
+# Color the mime type and the size
+color   attach_headers     green           default    "Type: [a-z]+/[a-z0-9\-]+"
+color   attach_headers     green           default    "Size: [0-9\.]+[KM]"
+# Color GPGME signature checks
+color   attach_headers     brightgreen     default    "Good signature from.*"
+color   attach_headers     brightred       default    "Bad signature from.*"
+color   attach_headers     brightred       default    "BAD signature from.*"
+color   attach_headers     brightred       default    "Note: This key has expired!"
+color   attach_headers     brightmagenta   default    "Problem signature from.*"
+color   attach_headers     brightmagenta   default    "WARNING: This key is not certified with a trusted signature!"
+color   attach_headers     brightmagenta   default    "         There is no indication that the signature belongs to the owner."
+color   attach_headers     brightmagenta   default    "can't handle these multiple signatures"
+color   attach_headers     brightmagenta   default    "signature verification suppressed"
+color   attach_headers     brightmagenta   default    "invalid node with packet of type"
+
+# vim: syntax=neomuttrc
+
+# Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+# Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+macro index,pager A   "<tag-thread><tag-prefix-cond><save-message>+work/archive<enter>"  "archive all in thread"
+macro index,pager a   "<save-message>+work/archive<enter>"                               "archive message"
+macro index       -   "<limit>all\n"                                                     "show all messages (undo limit)"
+macro index       M   "<limit>~b @arup | ~F\n"                                       "show all message to me"
+macro index       \C_ "<tag-pattern>~N<enter><tag-prefix-cond>N<untag-pattern>~T<enter>" "mark all as read"
+
+# Sidebar Navigation ---------------------------------
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+auto_view text/html
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager g  noop 
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+# Open URLs
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
+# Compose View Options -------------------------------
+set realname = "Arup Banerjee"        # who am i?
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+unset askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# aliases and autocomplete
+source $alias_file
+set query_command = "~/dotfiles/.mutt/scripts/contacts.rb '%s' 2> /dev/null"
+bind editor <Tab> complete-query
+bind editor \Ct complete
+
+# Sending mail ---------------------------------------
+set from     = "arup@alanaamy.net"
+set sendmail = "/usr/local/bin/msmtp -a work"
+set sendmail_wait = 0
+unset record
+bind compose p postpone-message
+bind index p recall-message
+
+# Account Settings -----------------------------------
+
+# Default inbox.
+set spoolfile = "+work/INBOX"
+
+# Mailboxes to show in the sidebar.
+mailboxes +work/INBOX \
+          +work/Disputes \
+          +work/Holidays \
+          +work/Sent \
+          +work/Property \
+          +work/cron \
+          +work/archive \
+          +work/drafts \
+          +Gmail/INBOX \
+          +Gmail/
+
+# Other special folders.
+set mbox      = "+work/archive"
+set postponed = "+work/drafts"
+
+source /Users/arup/dotfiles/.mutt/themes/monokai
+source /Users/arup/dotfiles/.mutt/hooks
+#source /Users/arup/.mutt/themes/solarized-dark
+#source /Users/arup/.mutt/themes/colors-gruvbox-shuber-extended
+#source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc

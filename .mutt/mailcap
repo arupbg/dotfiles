@@ -1,0 +1,22 @@
+#text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+#text/html; ~/.mutt/parse_html.py %s; copiousoutput
+
+application/octet-stream ; echo %s "can be anything..."                    ; copiousoutput
+text/html                ; /usr/local/bin/elinks -dump %s ; nametemplate=%s.html ; copiousoutput
+#application/pdf          ; /usr/local/bin/zathura %s                             ; copiousoutput
+#image/*                  ; /usr/bin/mirage %s                              ; copiousoutput
+image/*; open -W -a Preview %s;
+audio/*                  ; /usr/local/bin/mplayer %s                             ; copiousoutput
+video/*                  ; /usr/local/bin/mplayer %s                             ; copiousoutput
+#text/html; w3m -I %{charset} -T text/html; copiousoutput;
+text/calendar; mv %s %s.ics && open %s.ics &&  ~/mutt-ical/mutt-ical.py -i -e "arupalan@gmail.com" %s.ics && %s.ics
+application/ics; ~/mutt-ical/mutt-ical.py -i -e "arupalan@gmail.com" %s
+text/calendar; ~/mutt-ical/icalview.rb; copiousoutput
+#application/*; open -W %s;
+
+application/msword; /Users/arup/.mutt/scripts/viewattach.sh %s "-" '/Applications/TextEdit.app' ; print=/Users/arup/.mutt/scripts/printattach.sh %s 
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; /Users/arup/.mutt/scripts/viewattach.sh %s "-" ; print=/Users/arup/.mutt/scripts/printattach.sh %s 
+application/rtf; /Users/arup/.mutt/scripts/viewattach.sh %s "-" '/Applications/Microsoft Word.app' ; print=/Users/arup/.mutt/scripts/printattach.sh %s
+application/vnd.ms-excel; /Users/arup/.mutt/scripts/viewattach.sh %s "-" '/Applications/Microsoft Excel.app' ; print=/Users/arup/.mutt/scripts/printattach.sh %s
+application/pdf; /Users/arup/.mutt/scripts/viewattach.sh %s "-" '/Applications/Preview.app' ; print=/Users/arup/.mutt/scripts/pdfattach.sh %s 
+#text/html; pandoc -f html -t markdown; copiousoutput; compose=vim %s
