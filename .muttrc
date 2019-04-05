@@ -30,17 +30,20 @@ set thorough_search      # strip headers and eval mimes before searching
 set sleep_time = 0
 
 #sidebar 
+#https://neomutt.org/feature/sidebar-intro
 # --------------------------------------------------------------------------
 # VARIABLES – shown with their default values
 # --------------------------------------------------------------------------
 # Should the Sidebar be shown?
 # set sidebar_visible = no
 # How wide should the Sidebar be in screen columns?
+set sidebar_visible                         # Make the Sidebar visible by default
+bind index,pager B sidebar-toggle-visible   # Use 'B' to switch the Sidebar on and off
 
 # Note: Some characters, e.g. Chinese, take up two columns each.
 # set sidebar_width = 20
 # Should the mailbox paths be abbreviated?
-set sidebar_short_path = no
+set sidebar_short_path
 # Number of top-level mailbox path subdirectories to truncate for display
 set sidebar_component_depth = 0
 # When abbreviating mailbox path names, use any of these characters as path
@@ -227,8 +230,8 @@ macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to s
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
-macro index,pager A   "<tag-thread><tag-prefix-cond><save-message>+work/archive<enter>"  "archive all in thread"
-macro index,pager a   "<save-message>+work/archive<enter>"                               "archive message"
+macro index,pager A   "<tag-thread><tag-prefix-cond><save-message>+work/Archive<enter>"  "archive all in thread"
+macro index,pager a   "<save-message>+work/Archive<enter>"                               "archive message"
 macro index       -   "<limit>all\n"                                                     "show all messages (undo limit)"
 macro index       M   "<limit>~b @arup | ~F\n"                                       "show all message to me"
 macro index       \C_ "<tag-pattern>~N<enter><tag-prefix-cond>N<untag-pattern>~T<enter>" "mark all as read"
@@ -303,18 +306,24 @@ set spoolfile = "+work/INBOX"
 
 # Mailboxes to show in the sidebar.
 mailboxes +work/INBOX \
+          +work/Tax \
+          +work/Contracts \
+          +work/accounts \
+          +work/Study \
+          +work/Policies \
+          +work/Job \
           +work/Disputes \
           +work/Holidays \
           +work/Sent \
           +work/Property \
           +work/cron \
-          +work/archive \
+          +work/Archive \
           +work/drafts \
           +Gmail/INBOX \
           +Gmail/
 
 # Other special folders.
-set mbox      = "+work/archive"
+set mbox      = "+work/Archive"
 set postponed = "+work/drafts"
 
 source /Users/arup/dotfiles/.mutt/themes/monokai

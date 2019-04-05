@@ -108,6 +108,11 @@ Plugin 'floobits/floobits-neovim'
 Plugin 'w0rp/ale'
 Plugin 'prettier/prettier'
 Plugin 'skywind3000/asyncrun.vim'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\}
+let g:ale_completion_enabled = 1
 
 " node
 Plugin 'moll/vim-node'

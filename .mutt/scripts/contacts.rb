@@ -6,7 +6,7 @@ query = ARGV.join(" ")
 
 account  = "arup@alanaamy.net"
 server   = "mail.alanaamy.net"
-password = `~/.mutt/scripts/keychain_access.py '#{account}' '#{server}'`.chomp
+password = `~/dotfiles/.mutt/scripts/keychain_access.py '#{account}' '#{server}'`.chomp
 Exchanger.configure do |config|
   config.endpoint = "https://#{server}/EWS/Exchange.asmx"
   config.username = account

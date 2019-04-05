@@ -20,7 +20,7 @@ localfolders = ~/Mail/work
 # If your GMail language setting is not English, you can execute
 # `offlineimap --info` to find out the name of folder which is
 # translated and encoded after your account is configured.
-nametrans = lambda folder: {'inbox': 'INBOX',
+nametrans = lambda folder: {'inbox': 'INBOX'
                             }.get(folder, folder)
 
 [Repository work-remote]
@@ -33,20 +33,21 @@ remoteuser = arup@alanaamy.net
 remotepasseval = get_keychain_pass(account="arup@alanaamy.net", server="alanaamy.net")
 remoteport = 143
 nametrans = lambda folder: {'INBOX': 'inbox',
-                            'Disputes': 'disputes',
-                            'Holidays': 'holidays',
-                            'Sent': 'Sent',
-                            'Property': 'Property'
+                            'Archive': 'archive'
                             }.get(folder, folder)
-folderfilter = lambda folder: folder in ['INBOX', 'disputes', 'holidays']
+#folderfilter = lambda folder: folder in ['INBOX', 'Tax, 'Study' , 'Disputes', 'Holidays', 'Contracts', 'Chandigarh', 'Sent', 'Property', 'Payments', 'Policies' ]
 # Or, if you have a lot of mail and don't want to wait for a long time before
 # using sup, you can archive all your old mails on Gmail and only sync the
 # inbox with the following line replacing the previous `folderfilter` line:
 # folderfilter = lambda folder: folder == 'INBOX'
+# folderfilter = lambda f: f not in ['sent','inbox' ]
+# folderfilter = lambda folder: folder not in [ 'inbox' , 'sent' , 'trash' ]
+folderfilter = lambda f: f not in ['inbox','archive']
 
 [Account Gmail]
 localrepository = Gmail-Local
 remoterepository = Gmail-Remote
+postsynchook = notmuch new
 
 [Repository Gmail-Local]
 type = Maildir
@@ -55,7 +56,7 @@ localfolders = ~/Mail/Gmail
 [Repository Gmail-Remote]
 type = Gmail
 remoteuser = arupalan@gmail.com
-remotepass = acacyowoufccbveq
+remotepasseval = get_keychain_pass(account="arupalan@gmail.com", server="imap.gmail.com")
 realdelete = no
 maxconnections = 3
 sslcacertfile = /usr/local/etc/openssl/cert.pem

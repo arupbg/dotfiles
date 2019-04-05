@@ -1,6 +1,10 @@
 # Mailboxes to show in the sidebar.
 mailboxes \
           +work/INBOX \
+          +work/Contracts \
+          +work/Study \
+          +work/Payments \
+          +work/Tax \
           +work/Disputes \
           +work/Holidays \
           +work/Sent \
