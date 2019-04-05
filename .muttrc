@@ -273,7 +273,7 @@ set realname = "Arup Banerjee"        # who am i?
 set envelope_from                    # which from?
 set sig_dashes                       # dashes before sig
 set edit_headers                     # show headers when composing
-set fast_reply                       # skip to compose when replying
+set fast_reply = "yes"               # skip to compose when replying
 unset askcc                            # ask for CC:
 set fcc_attach                       # save attachments with the body
 unset mime_forward                   # forward attachments as part of body
@@ -295,9 +295,29 @@ bind editor \Ct complete
 set from     = "arup@alanaamy.net"
 set sendmail = "/usr/local/bin/msmtp -a work"
 set sendmail_wait = 0
+set use_from = "yes"
+set envelope_from = "yes"
+set reply_to = "yes"
 unset record
 bind compose p postpone-message
 bind index p recall-message
+# Compose a new email (not a reply) to the sender
+bind index,pager @ compose-to-sender
+
+set smtp_url = "smtp://arupalan@gmail.com@smtp.gmail.com:587/"
+set smtp_pass = `security find-internet-password -w -a 'Gmail'`
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set from = "arup@alanaamy.net"
+set smtp_authenticators = 'gssapi:login'
+
+# Set the color of the progress bar
+# White text on a red background
+color progress white red
+
+# Use X-Original-To header to reply when reverse is disabled or no alternate
+# is found.
+set reply_with_xorig = "yes"
 
 # Account Settings -----------------------------------
 
@@ -306,14 +326,26 @@ set spoolfile = "+work/INBOX"
 
 # Mailboxes to show in the sidebar.
 mailboxes +work/INBOX \
-          +work/Tax \
-          +work/Contracts \
+          +work/INBOX.Tax \
+          +work/Inbox.Contracts \
+          +work/INBOX.education \
+          +work/INBOX.education.bash \
+          +work/INBOX.education.c\# \
+          +work/INBOX.education.javascript \
+          +work/INBOX.education.joel \
+          +work/INBOX.education.udemy \
+          +work/INBOX.Disputes \
+          +work/INBOX.Disputes.Aviva-Hsbc \
+          +work/INBOX.Disputes.BESCOM  \
+          +work/INBOX.Disputes.BritishGas \
+          +work/INBOX.Disputes.Centrica \
+          +work/INBOX.Disputes.Currys \
           +work/accounts \
           +work/Study \
           +work/Policies \
           +work/Job \
           +work/Disputes \
-          +work/Holidays \
+          +work/holidays \
           +work/Sent \
           +work/Property \
           +work/cron \
@@ -323,8 +355,9 @@ mailboxes +work/INBOX \
           +Gmail/
 
 # Other special folders.
-set mbox      = "+work/Archive"
+set mbox      = "+work/INBOX"
 set postponed = "+work/drafts"
+set mbox      = "+work/Sent"
 
 source /Users/arup/dotfiles/.mutt/themes/monokai
 source /Users/arup/dotfiles/.mutt/hooks

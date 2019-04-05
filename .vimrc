@@ -155,6 +155,10 @@ Plugin 'Shougo/vimproc.vim'
 "https://github.com/neovim/nvim.net
 Plugin 'neovim/nvim.net'
 
+"https://github.com/guyzmo/notmuch-abook
+Plugin 'guyzmo/notmuch-abook'
+let $NOTMUCH_CONFIG = expand("~/.notmuch-config")
+
 "code folding
 Plugin 'tmhedberg/simpylfold'
 let g:SimpylFold_docstring_preview = 1

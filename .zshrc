@@ -202,3 +202,9 @@ export VISUAL=nvim
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export MAIL_SERVER = smtp.gmail.com
+export MAIL_PORT = 587
+export MAIL_USE_TLS = True
+export MAIL_USE_SSL = False
+export MAIL_USERNAME = 
+export MAIL_PASSWORD = 

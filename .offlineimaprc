@@ -42,7 +42,7 @@ nametrans = lambda folder: {'INBOX': 'inbox',
 # folderfilter = lambda folder: folder == 'INBOX'
 # folderfilter = lambda f: f not in ['sent','inbox' ]
 # folderfilter = lambda folder: folder not in [ 'inbox' , 'sent' , 'trash' ]
-folderfilter = lambda f: f not in ['inbox','archive']
+folderfilter = lambda f: f not in ['inbox','archive','drafts']
 
 [Account Gmail]
 localrepository = Gmail-Local
