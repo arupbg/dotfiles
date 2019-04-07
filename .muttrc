@@ -233,7 +233,7 @@ macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro index,pager A   "<tag-thread><tag-prefix-cond><save-message>+work/Archive<enter>"  "archive all in thread"
 macro index,pager a   "<save-message>+work/Archive<enter>"                               "archive message"
 macro index       -   "<limit>all\n"                                                     "show all messages (undo limit)"
-macro index       M   "<limit>~b @arup | ~F\n"                                       "show all message to me"
+#macro index      M   "<limit>~b @arup | ~F\n"                                           "show all message to me"
 macro index       \C_ "<tag-pattern>~N<enter><tag-prefix-cond>N<untag-pattern>~T<enter>" "mark all as read"
 
 # Sidebar Navigation ---------------------------------
@@ -269,12 +269,12 @@ bind attach <return> view-mailcap
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
 # Compose View Options -------------------------------
-set realname = "Arup Banerjee"        # who am i?
+set realname = "Arup Banerjee"       # who am i?
 set envelope_from                    # which from?
 set sig_dashes                       # dashes before sig
 set edit_headers                     # show headers when composing
 set fast_reply = "yes"               # skip to compose when replying
-unset askcc                            # ask for CC:
+unset askcc                          # ask for CC:
 set fcc_attach                       # save attachments with the body
 unset mime_forward                   # forward attachments as part of body
 set forward_format = "Fwd: %s"       # format of subject when forwarding
@@ -334,6 +334,7 @@ mailboxes +work/INBOX \
           +work/INBOX.education.javascript \
           +work/INBOX.education.joel \
           +work/INBOX.education.udemy \
+          +work/INBOX.Payments \
           +work/INBOX.Disputes \
           +work/INBOX.Disputes.Aviva-Hsbc \
           +work/INBOX.Disputes.BESCOM  \
@@ -341,17 +342,28 @@ mailboxes +work/INBOX \
           +work/INBOX.Disputes.Centrica \
           +work/INBOX.Disputes.Currys \
           +work/accounts \
-          +work/Study \
-          +work/Policies \
-          +work/Job \
-          +work/Disputes \
-          +work/holidays \
-          +work/Sent \
-          +work/Property \
+          +work/INBOX.Study \
+          +work/INBOX.Policies \
+          +work/INBOX.Job \
+          +work/INBOX.Tax \
+          +work/INBOX.Disputes \
+          +work/INBOX.holidays \
+          +work/INBOX.Sent \
+          +work/INBOX.Property \
+          +work/INBOX.Property.Brigade \
+          +work/INBOX.Property.IvyTerrace \
+          +work/INBOX.Property.SilverOak \
           +work/cron \
           +work/Archive \
           +work/drafts \
+          +work/INBOX.Official \
+          +work/INBOX.Official.Damco \
+          +work/INBOX.Official.Taxlink \
           +Gmail/INBOX \
+          +Gmail/INBOX.Medium \
+          +Gmail/INBOX.Property \
+          +Gmail/INBOX.Flight Tickets \
+          +Gmail/INBOX.Disputes \
           +Gmail/
 
 # Other special folders.

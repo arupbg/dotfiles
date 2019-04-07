@@ -130,6 +130,10 @@ ZSH_TMUX_AUTOSTART='true'
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
+#
+# fix neovim fugitive issue
+export EDITOR='nvim'
+
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,

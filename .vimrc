@@ -5,12 +5,24 @@ set smartindent
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/usr/local/opt/fzf
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+"https://elliotekj.com/2016/10/30/using-ripgrep-and-fzf-instead-of-the-silver-searcher-and-ctrlp-in-vim/
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/limelight.vim'
+
+"https://github.com/ervandew/supertab
+Plugin 'ervandew/supertab'
+
+"https://github.com/vim-scripts/ZoomWin
+Plugin 'vim-scripts/ZoomWin'
 
 "Plugin for vim-tmux integration
 Plugin 'christoomey/vim-tmux-navigator'
