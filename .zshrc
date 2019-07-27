@@ -194,8 +194,9 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 alias python=python3
 alias pip=pip3
 export PATH="/usr/local/opt/qt/bin:$PATH"
-export VISUAL=nvim
-
+export VISUAL
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=${JAVA_HOME}/bin:$PATH
 # Use the right colorscheme
 # BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -206,9 +207,21 @@ export VISUAL=nvim
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-export MAIL_SERVER = smtp.gmail.com
-export MAIL_PORT = 587
-export MAIL_USE_TLS = True
-export MAIL_USE_SSL = False
-export MAIL_USERNAME = 
-export MAIL_PASSWORD = 
+export MAIL_SERVER=smtp.gmail.com
+export MAIL_PORT=587
+export MAIL_USE_TLS=True
+export MAIL_USE_SSL=False
+export MAIL_USERNAME= 
+export MAIL_PASSWORD= 
+alias matrix='LC_ALL=C tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"'
+[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/arup/projects/lambda/serverless-app/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/arup/projects/lambda/serverless-app/node_modules/tabtab/.completions/slss.zsh
